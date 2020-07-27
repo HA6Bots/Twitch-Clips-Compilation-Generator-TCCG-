@@ -258,9 +258,12 @@ ___
 ## Dependencies.
 
 FFMPEG is required for the Video Generator Program. (must be added to system path so can be called from command line)
+
 A MySQL server is required for the Server program.
+
 Python (recommend 3.7+ and 64bit on windows)
-Twitch API credentials 
+
+Twitch API credentials (client_id and bearer)
 
 Module list
 
