@@ -62,9 +62,8 @@ Twitch only gives you access to about 1000 clips for each time period entered in
 
 
 
-Pointers
+## Setting up the system
 
-___
 
 ## Database breakdown: (twitchclipdb)
 
