@@ -1,32 +1,49 @@
 
-**HA6Bot’s Twitch Clip Compilation Generator**
+
+## **HA6Bot’s Twitch Clip Compilation Generator**
 
 The **TCCG** is a system of bots that **collects clips automatically**, lets you edit videos by **cutting and combining these clips**, and puts them **together into a compilation video** ready to be uploaded straight to any social media platform. **Full VPS support is provided**, along with an accounts system so multiple users can use the bot at once.
 This bot is split up into three separate programs. **The server. The client. The video generator.** These programs perform different functions that when combined creates a very powerful system for **auto generating compilation videos**.
 
 
 
-**What this bot does.**
+## **What this bot does.**
+
 1.	Passively downloads and stores top highlight clips from Twitch for any category/categories. The clips are automatically kept track of in a clip bin database. 
 2.	Provides a video editor interface connected directly to the clip bin database, allowing you to easily go through the clips. The interface is somewhat similar to that of tinder, where you can keep/skip a video clip. You can also trim the clips and change their volume.
 3.	A video generator that compiles the clips from the video editor, generating a mp4 video where that you can upload to any platform.
 
 
-One of the main challenges of creating compilation videos is finding the video clips in the first place. This can be a laborious task and is a large factor for the time to edit the videos. This bot will automatically find and download clips for you straight from Twitch. They come from the top clips category and therefore are somewhat guaranteed to be of good quality. Of course it’s not perfect. Sometimes streamers will have the wrong gaming category selected when their clip gets highlighted or duplicates of clips occur where multiple users highlighted the same clip. Either way it is still more streamlined then doing it manually. 
+One of the main challenges of creating compilation videos is finding the video clips in the first place. This can be a laborious task and is a large factor for the time to edit the videos. This bot will **automatically find and download clips for you straight from Twitch**. They come from the top clips category and therefore are somewhat guaranteed to be of good quality. Of course it’s not perfect. Sometimes streamers will have the wrong gaming category selected when their clip gets highlighted or duplicates of clips occur where multiple users highlighted the same clip. Either way it is still more streamlined then doing it manually. 
 Full VPS Support and Account System
-Since the bot is split up into three different programs, communications between the programs uses a combination HTTP and FTP servers to move information from one program to the other. The FTP servers are used to move mp4 files around while the HTTP servers are for general information and usually are in the form of json. FTP requires authorisation for each client and therefore this provides the basis of the account system. You can add or remove users and set there password in the server program. This username and password combination is required in the video editor program. Therefore this works perfectly for a multi man operation as allows for multiple people to use the bot at once. 
+
+Since the bot is split up into three different programs, communications between the programs uses a **combination HTTP and FTP servers** to move information from one program to the other. The FTP servers are used to move mp4 files around while the HTTP servers are for general information and usually are in the form of json. FTP requires authorisation for each client and therefore this provides the basis of the account system. You can add or remove users and set there password in the server program. This username and password combination is required in the video editor program. Therefore this works perfectly for a multi man operation as allows for multiple people to use the bot at once. 
 
 
 
 
-There are three separate programs that make up the Twitch bot.
+## There are three separate programs that make up TCCG.
 
 1.	Server Program
 Function:
 •	Automatically downloads clips from Twitch top highlights for any categories that you select.
 •	Can manage accounts for the client logins
 
-Automatic Downloader Notes
+
+
+
+
+2.	Video Editor Program
+
+This is the actual user interface used to browse the clips in the server clip bin, and also make edits to them in preparation for their compilation. This is a fairly simple process, for any one clip you have the option to keep or remove it; trim the start and end of it; change the volume. You can also upload an intro/outro/interval/general clip. There are also music options for the background music of each video. 
+
+
+3.	Video Generator Program
+This actually puts together the clips into a compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video.
+
+
+## Automatic Downloader Notes
+
 The automatic downloader side of the server is designed in a way to get around the Twitch limitations for getting the highlight clips. 
 It is split into two different processes:
 1.	Finding the top highlight clips and obtaining it’s URL
@@ -42,32 +59,23 @@ We use kraken because it gives access to many more clips then helix - from exper
 Twitch only gives you access to about 1000 clips for each time period entered into the API call, as it limits the amount of pages you can use in the pagination call to about 10 pages, at a max of 100 clips per page. There are four time periods “day”, “week”, “month”, “all”. Therefore at any one time you can only get 4000 clips if every single page is used. This would not be a sufficient amount of clips if the find/download process is only initiated when the bot is used for video editing. Therefore it is recommended to run this process automatically to build up a large clip bin, preferably on a VPS. This is largely down to the usage of the bot - heavy usage will demand a large amount of clips, and therefore turning on the automated find/download process is recommended for this case. 
 
 
-2.	Video Editor Program
-
-This is the actual user interface used to browse the clips in the server clip bin, and also make edits to them in preparation for their compilation. This is a fairly simple process, for any one clip you have the option to keep or remove it; trim the start and end of it; change the volume. You can also upload an intro/outro/interval/general clip. There are also music options for the background music of each video. 
 
 
-3.	Video Generator Program
-This actually puts together the clips into a compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video.
 
-Config Settings
-Additional settings that only take effect on start-up are stored in a config file for each program. Any changes made require a restart to the particular program.
+Pointers
 
-Dependencies.
-FFMPEG is required for the Video Generator Program. (must be added to system path so can be called from command line)
-A MySQL server is required for the Server program.
-Module list (see below)
+___
 
-Code pointers
+## Database breakdown: (twitchclipdb)
 
-Database: (twitchclipdb)
 Table clip_bin
-clip_num : iterator
-game : What Twitch category the clip belongs to
-clip_id : Unique id for clip provided by Twitch
-date: Date when clip recorded
-clipwrapper: clip’s TwitchClipWrapper() from scriptwrapper.py
-status: The status of the clip
+
+`clip_num` : iterator
+`game` : What Twitch category the clip belongs to
+`clip_id` : Unique id for clip provided by Twitch
+`date`: Date when clip recorded
+`clipwrapper`: clip’s TwitchClipWrapper() from scriptwrapper.py
+`status`: The status of the clip
 •	FOUND = information found about clip but not downloaded yet.
 •	DOWNLOADED = Clip downloaded and ready for editing
 •	USED = Used in video (mp4 file has been deleted)
@@ -84,7 +92,9 @@ Table saved_games
 `game_id` : The id of the category
 
 
+___
 
+## File Breakdown
 
 Server
 
@@ -136,8 +146,9 @@ Video Generator
 
 `vidgenUI.py` : Where the UI is programmed
 
+___
 
-Config settings:
+## Config settings:
 
 Each program has it's own config file that **MUST** be configured appropriately for the system to function properly. **Each bot will generate a config file** (so 3 in total) once it is ran from it's **start point file**. Once the config file is generated, fill in the details where necessary then **restart** the bot and the changes will be taken into account. 
 
@@ -236,6 +247,15 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `fontname` = Gilroy-ExtraBold <-- Font for streamers name. (Must be installed on system)
 
 `streamer_name` = true <-- Include the streamer name in the video
+
+___
+
+
+## Dependencies.
+
+FFMPEG is required for the Video Generator Program. (must be added to system path so can be called from command line)
+A MySQL server is required for the Server program.
+Module list (see below)
 
 Python (recommend 3.7+ and 64bit on windows)
 
