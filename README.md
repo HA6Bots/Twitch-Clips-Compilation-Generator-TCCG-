@@ -56,6 +56,7 @@ Additional settings that only take effect on start-up are stored in a config fil
 Dependencies.
 FFMPEG is required for the Video Generator Program. (must be added to system path so can be called from command line)
 A MySQL server is required for the Server program.
+Module list (see below)
 
 Code pointers
 
@@ -75,6 +76,7 @@ status: The status of the clip
 
 
 Table saved_games
+
 `num` : iterator
 
 `game_name` : The category name as it appears on Twitch
@@ -82,7 +84,10 @@ Table saved_games
 `game_id` : The id of the category
 
 
+
+
 Server
+
 `main.py` : start point
 
 `database.py` : all the sql queries are written here
@@ -100,7 +105,10 @@ Server
 `scriptwrapper.py` : Various wrappers for the twitch clips here. Formatting of the video occurs here in the `reformatPartialJson` method
 
 
+
+
 Client
+
 `main.py` : start point
 
 `client.py` : Communications with the server http and ftp occur here
@@ -112,7 +120,10 @@ Client
 `clientUI.py` : Where the UI is programmed
 
 
+
+
 Video Generator
+
 `main.py` : start point
 
 `server.py` : FTP and HTTP Servers are handled here.
@@ -131,7 +142,9 @@ Config settings:
 Each program has it's own config file that **MUST** be configured appropriately for the system to function properly. **Each bot will generate a config file** (so 3 in total) once it is ran from it's **start point file**. Once the config file is generated, fill in the details where necessary then **restart** the bot and the changes will be taken into account. 
 
 **Server config**
+
 [server_details]
+
 `address` = 127.0.0.1 <-- Server Address
 
 `http_port` = 8000  <-- Server HTTP Port
@@ -139,6 +152,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `ftp_port` = 2121 <-- Server FTP Port
 
 [video_generator_location]
+
 `address` = 127.0.0.1 <-- Video Generator Address
 
 `http_port` = 8001 <--Video Generator HTTP Port
@@ -150,6 +164,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `ftp_password` = password <-- Video Generator FTP Client password
 
 [twitch_settings]
+
 `language` = en <-- Clip language
 
 `client_id` =  <-- Twitch API Client ID
@@ -157,6 +172,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `bearer` = <-- Twitch API Bearer
 
 [mysql_database]
+
 `databasehost` = localhost <-- MySQL Server address
 
 `databaseuser` = root <-- MySQL Server user
@@ -164,7 +180,9 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `databasepassword` = <-- MySQL Server user password
 
 **Video editor client config**
+
 [server_location]
+
 `address` = 127.0.0.1 <-- Server address
 
 `server_http_port` = 8000 <-- Server HTTP port
@@ -172,6 +190,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `server_ftp_port` = 2121 <-- Server FTP port
 
 [auto_login]
+
 `username` = admin <-- User registered in server
 
 `password` = password <-- User registered in server’s password
@@ -179,6 +198,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `auto_login` = true <-- Insert the above details into the login window on startup
 
 [video_settings]
+
 `enforce_interval` = True <-- Forces you to select a interval for your video
 
 `enforce_intro` = True <-- Forces you to select a intro for your video
@@ -190,6 +210,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 **Video Generator config file**
 
 [video_generator_details]
+
 `address` = 127.0.0.1 <-- Video Generator Address
 
 `http_port` = 8001 <-- Video Generator HTTP port
@@ -201,6 +222,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `ftp_password` = password <-- Video Generator FTP user’s password
 
 [server_location]
+
 `address` = 127.0.0.1 <-- Server address
 
 `http_port` = 8000 <-- Server HTTP port
@@ -208,6 +230,7 @@ Each program has it's own config file that **MUST** be configured appropriately 
 `ftp_port` = 2121 <-- Server FTP port
 
 [rendering]
+
 `fps` = 30 <-- FPS to render video at
 
 `fontname` = Gilroy-ExtraBold <-- Font for streamers name. (Must be installed on system)
