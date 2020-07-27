@@ -61,7 +61,8 @@ It is split into two different processes:
 There are no restrictions on downloading the clips and this is simple to do once a URL is obtained. However finding the top clips in the first place is another story.
 
 To find the clips the bot uses the following API call:
-https://api.twitch.tv/kraken/clips/top?game={game_name}&period={period}&language=en&limit={100}&cursor={next_page_cursor}
+
+    https://api.twitch.tv/kraken/clips/top?game={game_name}&period={period}&language=en&limit={100}&cursor={next_page_cursor}
 
 We use kraken because it gives access to many more clips then helix - from experience about 4x as much.
 
