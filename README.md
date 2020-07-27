@@ -70,10 +70,15 @@ Twitch only gives you access to about 1000 clips for each time period entered in
 Table clip_bin
 
 `clip_num` : iterator
+
 `game` : What Twitch category the clip belongs to
+
 `clip_id` : Unique id for clip provided by Twitch
+
 `date`: Date when clip recorded
+
 `clipwrapper`: clip’s TwitchClipWrapper() from scriptwrapper.py
+
 `status`: The status of the clip
 •	FOUND = information found about clip but not downloaded yet.
 •	DOWNLOADED = Clip downloaded and ready for editing
