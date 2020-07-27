@@ -5,7 +5,9 @@
 The **TCCG** is a system of bots that **collects clips automatically**, lets you edit videos by **cutting and combining these clips**, and puts them **together into a compilation video** ready to be uploaded straight to any social media platform. **Full VPS support is provided**, along with an accounts system so multiple users can use the bot at once.
 This bot is split up into three separate programs. **The server. The client. The video generator.** These programs perform different functions that when combined creates a very powerful system for **auto generating compilation videos**.
 
-
+Preview:
+[Valorant Top 50 Plays Video](https://www.youtube.com/watch?v=6KfIjJeYU3s&feature=youtu.be)
+[GTA 5 Fails and Funny moments ](https://www.youtube.com/watch?v=6KfIjJeYU3s&feature=youtu.be)
 
 ## **What this bot does.**
 
