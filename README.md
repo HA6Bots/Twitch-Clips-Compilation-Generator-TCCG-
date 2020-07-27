@@ -75,36 +75,54 @@ status: The status of the clip
 
 
 Table saved_games
-num : iterator
-game_name : The category name as it appears on Twitch
-game_id : The id of the category
+`num` : iterator
+
+`game_name` : The category name as it appears on Twitch
+
+`game_id` : The id of the category
 
 
 Server
 `main.py` : start point
+
 `database.py` : all the sql queries are written here
+
 `server.py` : FTP and HTTP Servers are handled here.
+
 `settings.py` : Data loaded in from config.ini
+
 `twitch.py` : Where the API calls are made to Twitch with the download/find methods.
+
 `autodownloader.py` : A wrapper for the download/find process utilised in autodownloaderUI.py
+
 `autodownloaderUI.py` : Where the UI is programmed
+
 `scriptwrapper.py` : Various wrappers for the twitch clips here. Formatting of the video occurs here in the `reformatPartialJson` method
 
 
 Client
 `main.py` : start point
+
 `client.py` : Communications with the server http and ftp occur here
+
 `settings.py` : Data loaded in from config.ini
+
 `scriptwrapper.py` : Various wrappers for twitch clips / entire videos are stored here
+
 `clientUI.py` : Where the UI is programmed
 
 
 Video Generator
 `main.py` : start point
+
 `server.py` : FTP and HTTP Servers are handled here.
+
 `settings.py` : Data loaded in from config.ini
+
 `scriptwrapper.py` : Various wrappers for twitch clips / entire videos are stored here
+
 `vidGen.py` : Methods for video rendering here see `renderVideo`
+
 `vidgenUI.py` : Where the UI is programmed
 
 
@@ -115,24 +133,34 @@ Each program has it's own config file that **MUST** be configured appropriately 
 **Server config**
 [server_details]
 `address` = 127.0.0.1 <-- Server Address
+
 `http_port` = 8000  <-- Server HTTP Port
+
 `ftp_port` = 2121 <-- Server FTP Port
 
 [video_generator_location]
 `address` = 127.0.0.1 <-- Video Generator Address
+
 `http_port` = 8001 <--Video Generator HTTP Port
+
 `ftp_port` = 2122 <-- Video Generator FTP Port
+
 `ftp_user` = VidGen <-- Video Generator FTP Client name
+
 `ftp_password` = password <-- Video Generator FTP Client password
 
 [twitch_settings]
 `language` = en <-- Clip language
+
 `client_id` =  <-- Twitch API Client ID
+
 `bearer` = <-- Twitch API Bearer
 
 [mysql_database]
 `databasehost` = localhost <-- MySQL Server address
+
 `databaseuser` = root <-- MySQL Server user
+
 `databasepassword` = <-- MySQL Server user password
 
 **Video editor client config**
@@ -145,32 +173,45 @@ Each program has it's own config file that **MUST** be configured appropriately 
 
 [auto_login]
 `username` = admin <-- User registered in server
+
 `password` = password <-- User registered in server’s password
+
 `auto_login` = true <-- Insert the above details into the login window on startup
 
 [video_settings]
 `enforce_interval` = True <-- Forces you to select a interval for your video
+
 `enforce_intro` = True <-- Forces you to select a intro for your video
+
 `enforce_outro` = True <-- Forces you to select a outro for your video
+
 `enforce_firstclip` = True <-- Forces you to select a first clip for your video
 
 **Video Generator config file**
 
 [video_generator_details]
 `address` = 127.0.0.1 <-- Video Generator Address
+
 `http_port` = 8001 <-- Video Generator HTTP port
+
 `ftp_port` = 2122 <-- Video Generator FTP port
+
 `ftp_user` = VidGen <-- Video Generator FTP user
+
 `ftp_password` = password <-- Video Generator FTP user’s password
 
 [server_location]
 `address` = 127.0.0.1 <-- Server address
+
 `http_port` = 8000 <-- Server HTTP port
+
 `ftp_port` = 2121 <-- Server FTP port
 
 [rendering]
 `fps` = 30 <-- FPS to render video at
+
 `fontname` = Gilroy-ExtraBold <-- Font for streamers name. (Must be installed on system)
+
 `streamer_name` = true <-- Include the streamer name in the video
 
 Python (recommend 3.7+ and 64bit on windows)
