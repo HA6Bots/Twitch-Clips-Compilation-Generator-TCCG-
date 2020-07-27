@@ -10,6 +10,7 @@ This bot is split up into three separate programs. **The server. The client. The
 
 Preview:
 [Valorant Top 50 Plays Video](https://www.youtube.com/watch?v=6KfIjJeYU3s&feature=youtu.be)
+
 [GTA 5 Fails and Funny moments ](https://www.youtube.com/watch?v=6KfIjJeYU3s&feature=youtu.be)
 
 ## **What this bot does.**
@@ -66,9 +67,41 @@ We use kraken because it gives access to many more clips then helix - from exper
 
 Twitch only gives you access to about 1000 clips for each time period entered into the API call, as it limits the amount of pages you can use in the pagination call to about 10 pages, at a max of 100 clips per page. There are four time periods “day”, “week”, “month”, “all”. Therefore at any one time you can only get 4000 clips if every single page is used. This would not be a sufficient amount of clips if the find/download process is only initiated when the bot is used for video editing. Therefore it is recommended to run this process automatically to build up a large clip bin, preferably on a VPS. This is largely down to the usage of the bot - heavy usage will demand a large amount of clips, and therefore turning on the automated find/download process is recommended for this case. 
 
+## Assets
+
+**Music**
+
+While most of the assets you'll have to create for yourself, I can provide some copyright free "epic" music to get you started. There's 25 of the best copyright free epic music found regularly in "top clips/plays" videos, with the volumes adjusted to a similar level. Simply drag the "Epic" folder into the video generator Assets/Music/ folder and restart it. This will register the new music category in the server so that the client can now select it when editing a video.
+
+There's also the option of choosing "None" for the music category when editing a video. This will force generate the video without any music.
+
+[Epic Music (25 copyright free songs)](https://www.mediafire.com/file/x3zszb11lihvbnd/TCCG_Epic_Music_Assets.zip/file)
 
 
+**Video Files**
+Video files can be manually uploaded into the bot for four different purposes:
 
+ 1. As a introduction video
+ 2. As a interval (transition) video
+ 3. As a outro video
+ 4. As a "first clip" video
+
+The selection of these video files is done in the video editor client. The selection of *1, 2, 3*  can be saved so that you do not have to reselect them each time. The video files must be 1920x1080p otherwise the video editor will not allow you to select them.
+
+These files should be placed into the following folders in the video editor client directory.
+
+ - Outros
+ - FirstClips
+ - Intros
+ - Outros
+
+These folders will be generated when the video editor client is run.
+
+You can also generate a video without any manually uploaded video files. See below for the client config file options:`enforce_interval`,`enforce_intro`,`enforce_outro`,`enforce_firstclip`
+
+
+**Fonts**
+This is for the subtitle of the streamer's name. The streamer's name will appear in the top left of each clip. You can change the font of this text by changing the value of `fontname`in the video generator config file. The value should be the name of any font installed on your system.   
 
 ## Setting up the system
 
@@ -159,6 +192,12 @@ Video Generator
 `vidgenUI.py` : Where the UI is programmed
 
 ___
+
+Setup the programs in the following order:
+
+1. Server
+2. Client
+3. Video Generator
 
 ## Config settings:
 
