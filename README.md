@@ -16,6 +16,8 @@ Preview:
 
 ## **What this bot does.**
 
+[Video of TCCG in use](https://youtu.be/ucUcux0kta8)
+
 1.	Passively downloads and stores top highlight clips from Twitch for any category/categories. The clips are automatically kept track of in a clip bin database. 
 2.	Provides a video editor interface connected directly to the clip bin database, allowing you to easily go through the clips. The interface is somewhat similar to that of tinder, where you can keep/skip a video clip. You can also trim the clips and change their volume.
 3.	A video generator that compiles the clips from the video editor, generating a mp4 video where that you can upload to any platform.
