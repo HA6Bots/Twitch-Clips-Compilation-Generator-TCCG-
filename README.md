@@ -138,7 +138,9 @@ Each program has it's own config file that **MUST** be configured appropriately 
 **Video editor client config**
 [server_location]
 `address` = 127.0.0.1 <-- Server address
+
 `server_http_port` = 8000 <-- Server HTTP port
+
 `server_ftp_port` = 2121 <-- Server FTP port
 
 [auto_login]
