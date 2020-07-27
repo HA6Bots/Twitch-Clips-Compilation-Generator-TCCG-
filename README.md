@@ -254,18 +254,18 @@ ___
 
 FFMPEG is required for the Video Generator Program. (must be added to system path so can be called from command line)
 A MySQL server is required for the Server program.
-Module list (see below)
-
 Python (recommend 3.7+ and 64bit on windows)
+Twitch API credentials 
 
-ftplib
-requests
-PyQt5
-Pymediainfo
-Opencv-python
-Moviepy
-Pyftpdlib
-Pysubs2
-Pydub
-mysql
+Module list
 
+ - ftplib
+ - requests
+ - PyQt5
+ - Pymediainfo
+ - Opencv-python
+ - Moviepy
+ - Pyftpdlib
+ - Pysubs2
+ - Pydub
+ - mysql
