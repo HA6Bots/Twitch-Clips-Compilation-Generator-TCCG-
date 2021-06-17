@@ -13,6 +13,7 @@ from pysubs2 import SSAFile, SSAEvent, SSAStyle, make_time
 import pickle
 import settings
 from pydub import AudioSegment
+from distutils.dir_util import copy_tree
 
 #File Paths
 
@@ -76,6 +77,14 @@ def renderThread(renderingScreen):
 
             total = t1-t0
             print("Rendering Time %s" % total)
+
+            if settings.backupVids:
+                backupName = save_names[i].replace(settings.temp_path, settings.backup_path)
+                if os.path.exists(backupName):
+                    print("Backup for video %s already exists" % backupName)
+                else:
+                    print("Making backup of video to %s" % backupName)
+                    copy_tree(save_names[i], backupName)
 
 
             print(f"Deleting video folder {save_names[i]}")
@@ -254,24 +263,29 @@ def renderVideo(video, rendering_screen):
 
     if not music_type == "None":
 
-        to_combine = []
-        music_combined_duration = 0
+        try:
+            to_combine = []
+            music_combined_duration = 0
 
-        while music_combined_duration < end_duration:
-            random_file=random.choice(os.listdir(f'{settings.asset_file_path}/Music/{music_type}'))
-            sound1 = AudioSegment.from_wav(f"Assets/Music/{music_type}/{random_file}")
-            music_combined_duration += sound1.duration_seconds
-            to_combine.append(sound1)
+            while music_combined_duration < end_duration:
+                random_file=random.choice(os.listdir(f'{settings.asset_file_path}/Music/{music_type}'))
+                sound1 = AudioSegment.from_wav(f"Assets/Music/{music_type}/{random_file}")
+                music_combined_duration += sound1.duration_seconds
+                to_combine.append(sound1)
 
-        combined_sounds = sum(to_combine)
-        combined_sounds.export(f"{settings.temp_path}/music-loop-uncut.wav", format="wav")
-        audio_loop_without_pause = AudioSegment.from_wav("%s/music-loop-uncut.wav" % settings.temp_path)
-        new_audio = AudioSegment.silent(duration=(start_duration * 1000)) + audio_loop_without_pause
-        new_audio.export(f"{settings.temp_path}/music-loop-uncut_with_pause.mp3", format="mp3")
+            combined_sounds = sum(to_combine)
+            combined_sounds.export(f"{settings.temp_path}/music-loop-uncut.wav", format="wav")
+            audio_loop_without_pause = AudioSegment.from_wav("%s/music-loop-uncut.wav" % settings.temp_path)
+            new_audio = AudioSegment.silent(duration=(start_duration * 1000)) + audio_loop_without_pause
+            new_audio.export(f"{settings.temp_path}/music-loop-uncut_with_pause.mp3", format="mp3")
 
-        music_loop = afx.audio_loop(AudioFileClip(f"{settings.temp_path}/music-loop-uncut_with_pause.mp3"), duration=end_duration).fx(afx.volumex, float(video.background_volume))
-        #music_loop = afx.audio_loop(audio, duration=end_duration)
-        music_loop.write_audiofile(f'{settings.temp_path}/music-loop.mp3')
+            music_loop = afx.audio_loop(AudioFileClip(f"{settings.temp_path}/music-loop-uncut_with_pause.mp3"), duration=end_duration).fx(afx.volumex, float(video.background_volume))
+            #music_loop = afx.audio_loop(audio, duration=end_duration)
+            music_loop.write_audiofile(f'{settings.temp_path}/music-loop.mp3')
+        except Exception as e:
+            print(e)
+            music_type = "None"
+
 
 
 
@@ -288,14 +302,31 @@ def renderVideo(video, rendering_screen):
         final_vid_with_music = final_concat.set_audio(final_concat.audio)
 
     sleep(5)
-    final_vid_with_music.write_videofile(f'{settings.final_video_path}/TwitchMoments_{current_date}.mp4', fps=settings.fps, threads=16)
+    if settings.ffmpeg_audio:
+        print("Rendering with audio fix")
+        final_vid_with_music.write_videofile(f'{settings.final_video_path}/TwitchMoments_{current_date}.mp4', fps=settings.fps,
+                                             threads=16, temp_audiofile=f'{settings.final_video_path}/TwitchMoments_{current_date}audio.mp3', remove_temp = False)
+        sleep(5)
+        os.system(f"ffmpeg -y -i \"{settings.final_video_path}/TwitchMoments_{current_date}.mp4\" -i \"{settings.final_video_path}/TwitchMoments_{current_date}audio.mp3\" -c:v copy -c:a aac \"{settings.final_video_path}/TwitchMoments_{current_date}fixaudio.mp4\"")
+        sleep(5)
+        os.remove(f'{settings.final_video_path}/TwitchMoments_{current_date}.mp4')
+        os.remove(f'{settings.final_video_path}/TwitchMoments_{current_date}audio.mp3')
+    else:
+        final_vid_with_music.write_videofile(f'{settings.final_video_path}/TwitchMoments_{current_date}.mp4', fps=settings.fps,
+                                             threads=16)
+        sleep(5)
+
+
     render_current_progress += 1
     t1 = datetime.datetime.now()
     total = t1-t0
     render_message = "Done writing final video (%s)" % total
     rendering_screen.render_progress.emit()
-
-    f= open(f"{settings.final_video_path}/TwitchMoments_{current_date}.txt","w+")
+    f = None
+    if settings.ffmpeg_audio:
+        f = open(f"{settings.final_video_path}/TwitchMoments_{current_date}fixaudio.txt", "w+")
+    else:
+        f = open(f"{settings.final_video_path}/TwitchMoments_{current_date}.txt", "w+")
     f.write("A special thanks to the following: \n\n")
     for cred in credits:
         f.write(cred + "\n")

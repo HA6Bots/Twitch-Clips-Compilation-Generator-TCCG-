@@ -27,6 +27,8 @@ old_clip_path = "OldClips"
 asset_file_path = "Assets"
 video_data_path = "VideoData"
 backup_path = "Backup"
+ffmpeg_audio = False
+backupVids = True
 
 
 server_port = 8000
@@ -65,6 +67,8 @@ def generateConfigFile():
         config.set("rendering", 'fps', '30')
         config.set("rendering", 'fontname', 'Gilroy-ExtraBold')
         config.set("rendering", 'streamer_name', 'true')
+        config.set("rendering", 'ffmpeg_audio', 'false')
+        config.set("rendering", 'backup-vids', 'true')
 
 
         with open(configpath, 'w') as configfile:
@@ -74,7 +78,7 @@ def generateConfigFile():
         loadValues()
 
 def loadValues():
-    global server_address, serverFTPPort, videogeneratoraddress, FTP_PORT, HTTP_PORT, FTP_USER, FTP_PASSWORD, fps, fontName, includeStreamerName, server_port
+    global server_address, serverFTPPort, videogeneratoraddress, FTP_PORT, HTTP_PORT, FTP_USER, FTP_PASSWORD, fps, fontName, includeStreamerName, server_port, ffmpeg_audio, backupVids
     config = configparser.ConfigParser()
     config.read(configpath)
     videogeneratoraddress = config.get('video_generator_details', 'address')
@@ -89,5 +93,8 @@ def loadValues():
     serverFTPPort = config.getint('server_location', 'ftp_port')
     fps = config.getint('rendering', 'fps')
     fontName = config.get('rendering', 'fontname')
-    includeStreamerName = config.get('rendering', 'streamer_name')
+    includeStreamerName = config.getboolean('rendering', 'streamer_name')
+    ffmpeg_audio = config.getboolean('rendering', 'ffmpeg_audio')
+    backupVids = config.getboolean('rendering', 'backup-vids')
+    print(ffmpeg_audio)
 

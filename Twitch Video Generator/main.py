@@ -35,6 +35,9 @@ if __name__ == "__main__":
     if not os.path.exists(settings.vid_finishedvids):
         os.mkdir(f"{settings.vid_finishedvids}")
 
+    if not os.path.exists(settings.backup_path):
+        os.mkdir(f"{settings.backup_path}")
+
     vidGen.deleteAllFilesInPath(settings.vid_finishedvids)
     server.init()
     App()
