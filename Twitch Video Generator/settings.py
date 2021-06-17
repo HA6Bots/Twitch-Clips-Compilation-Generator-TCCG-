@@ -61,7 +61,7 @@ def generateConfigFile():
         config.add_section("server_location")
         config.set("server_location", 'address', '127.0.0.1')
         config.set("server_location", 'http_port', '8000')
-        config.set("server_location", 'ftp_port', '2122')
+        config.set("server_location", 'ftp_port', '2121')
 
         config.add_section("rendering")
         config.set("rendering", 'fps', '30')
