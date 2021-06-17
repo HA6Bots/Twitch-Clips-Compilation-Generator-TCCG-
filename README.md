@@ -318,7 +318,6 @@ Twitch API credentials (client_id and bearer)
 
 Module list
 
- - ftplib
  - requests
  - PyQt5
  - Pymediainfo
