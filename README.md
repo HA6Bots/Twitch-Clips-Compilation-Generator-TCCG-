@@ -8,6 +8,8 @@
 **TCCG** is a system of bots that **collects Twitch clips automatically**, allows you to easily edit videos by **cutting and combining clips**, and combines them **into a compilation video** ready to be uploaded straight to any social media platform, with optional **background music, animation intervals, outros or intros** . **Full VPS support is provided**, along with a basic authentication system so multiple users can use the bot at once.
 
 [![Video of TCCG in use](http://img.youtube.com/vi/ucUcux0kta8/0.jpg)](http://www.youtube.com/watch?v=ucUcux0kta8 "Video Title")
+*Click on image above to see video of TCCG in use.*
+
 
 
 Compilation videos can be found in  **all** corners of the internet - YouTube, Facebook, Twitter, Instagram. One of the most popular types are **gaming compilations** showcasing compilations of entertaining gaming clips. There are many different variants of gaming compilations - **top clips, wins, fails, wtf moments, glitches, funny moments** etc. They wrack up a lot of views and can **quickly grow** a channels follower base, especially when a new game is released. However there are several inefficencies involved in creating compilation videos the traditional way. This bot (or series of programs) addresses many of these issues, streamlining the process of creating these videos.
@@ -22,7 +24,6 @@ This bot is split up into three co-dependent programs. **The server. The client.
 
 ## **What this bot does.**
 
-[Video of TCCG in use](https://youtu.be/ucUcux0kta8)
 
 1.	Passively downloads and stores top highlight clips from Twitch for any category/categories. The clips are automatically kept track of in a clip bin database. 
 2.	Provides a video editor interface connected directly to the clip bin database, allowing you to easily go through the clips. The interface is somewhat similar to that of Tinder, where you can keep/skip a video clip. You can also trim the clips and change their volume.
