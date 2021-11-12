@@ -32,7 +32,7 @@ Full VPS Support and Account System
 Since the bot is split up into three different programs, communications between the programs uses a **combination HTTP and FTP servers** to move information from one program to the other. The FTP servers are used to move mp4 files around while the HTTP servers are for general information and usually are in the form of json. FTP requires authorisation for each client and therefore this provides the basis of the account system. You can add or remove users and set there password in the server program. This username and password combination is required in the video editor program. Therefore this works perfectly for a multi man operation as allows for multiple people to use the bot at once. 
 
 
-![](Images/Flow of Events.png)
+![](Images/diagram.png)
 
 
 ## There are three separate programs that make up TCCG.
