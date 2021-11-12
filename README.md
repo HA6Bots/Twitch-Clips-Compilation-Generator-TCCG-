@@ -51,7 +51,7 @@ This is the actual user interface used to browse the clips in the server clip bi
 This actually puts together the clips into a compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video.
 
 
-![](Twitch-Clips-Compilation-Generator-TCCG-/Images/Flow of Events.png)
+![](Images/Flow of Events.png)
 
 ## Automatic Downloader Notes
 
