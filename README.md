@@ -61,6 +61,7 @@ This actually puts together the clips into a compilation video. If a interval is
 
 ![](Images/vidgenerator.png)
 
+
 ## Automatic Downloader Notes
 
 The automatic downloader side of the server is designed in a way to get around the Twitch limitations for getting the highlight clips. 
