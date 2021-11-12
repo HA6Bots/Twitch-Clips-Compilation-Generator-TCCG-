@@ -5,13 +5,13 @@
 
 ![](Images/screenshot2.PNG)
 
-The **TCCG** is a system of bots that **collects clips automatically**, lets you edit videos by **cutting and combining these clips**, and puts them **together into a compilation video** ready to be uploaded straight to any social media platform. **Full VPS support is provided**, along with an accounts system so multiple users can use the bot at once.
+**TCCG** is a system of bots that **collects Twitch clips automatically**, allows you to easily edit videos by **cutting and combining clips**, and combines them **into a compilation video** ready to be uploaded straight to any social media platform, with optional **background music, animation intervals, outros or intros** . **Full VPS support is provided**, along with a basic authentication system so multiple users can use the bot at once.
 
-Compilation videos can be found in nearly **all** corners of the internet - YouTube, Facebook, Twitter, Instagram. The most common forms are **gaming compilations**. There are many different styles of gaming compilations that can be made. **Top clips, wins, fails, wtf moments, glitches, funny moments** etc. They wrack up a lot of views and can **quickly grow** a channels follower base, especially when a new game is released. However there are several challenges involved in creating compilation videos. This bot (or series of programs) addresses many of these issues.
+Compilation videos can be found in  **all** corners of the internet - YouTube, Facebook, Twitter, Instagram. One of the most popular types are **gaming compilations** showcasing compilations of entertaining gaming clips. There are many different variants of gaming compilations - **top clips, wins, fails, wtf moments, glitches, funny moments** etc. They wrack up a lot of views and can **quickly grow** a channels follower base, especially when a new game is released. However there are several inefficencies involved in creating compilation videos the traditional way. This bot (or series of programs) addresses many of these issues, streamlining the process of creating these videos.
 
-This bot is split up into three separate programs. **The server. The client. The video generator.** These programs perform different functions that when combined creates a very powerful system for **auto generating compilation videos**.
+This bot is split up into three co-dependent programs. **The server. The client. The video generator.** These programs make up the powerful system for that is **TCCG**.
 
-Preview:
+*Sample Videos*:
 
 [Valorant Top 50 Plays Video](https://www.youtube.com/watch?v=6KfIjJeYU3s&feature=youtu.be)
 
@@ -22,14 +22,14 @@ Preview:
 [Video of TCCG in use](https://youtu.be/ucUcux0kta8)
 
 1.	Passively downloads and stores top highlight clips from Twitch for any category/categories. The clips are automatically kept track of in a clip bin database. 
-2.	Provides a video editor interface connected directly to the clip bin database, allowing you to easily go through the clips. The interface is somewhat similar to that of tinder, where you can keep/skip a video clip. You can also trim the clips and change their volume.
-3.	A video generator that compiles the clips from the video editor, generating a mp4 video where that you can upload to any platform.
+2.	Provides a video editor interface connected directly to the clip bin database, allowing you to easily go through the clips. The interface is somewhat similar to that of Tinder, where you can keep/skip a video clip. You can also trim the clips and change their volume.
+3.	A video generator that compiles the selected clips, generating the final mp4 video  that you can upload to any platform.
 
 
-One of the main challenges of creating compilation videos is finding the video clips in the first place. This can be a laborious task and is a large factor for the time to edit the videos. This bot will **automatically find and download clips for you straight from Twitch**. They come from the top clips category and therefore are somewhat guaranteed to be of good quality. Of course it’s not perfect. Sometimes streamers will have the wrong gaming category selected when their clip gets highlighted or duplicates of clips occur where multiple users highlighted the same clip. Either way it is still more streamlined then doing it manually. 
+One of the main challenges of creating compilation videos is finding the video clips in the first place. This can be a laborious task and can take a lot of time. This bot will **automatically find and download clips for you straight from Twitch**. They come from the top clips category,  somewhat guaranteeing that they be good quality. It's not perfect. Sometimes streamers will have the wrong gaming category selected when their clip gets highlighted or duplicates of clips occur where multiple users highlighted the same clip. Despite this, it still makes the process incredibly quick. 
 Full VPS Support and Account System
 
-Since the bot is split up into three different programs, communications between the programs uses a **combination HTTP and FTP servers** to move information from one program to the other. The FTP servers are used to move mp4 files around while the HTTP servers are for general information and usually are in the form of json. FTP requires authorisation for each client and therefore this provides the basis of the account system. You can add or remove users and set there password in the server program. This username and password combination is required in the video editor program. Therefore this works perfectly for a multi man operation as allows for multiple people to use the bot at once. 
+Since the bot is split up into three different programs, communications between the programs uses a **combination HTTP and FTP servers** to move information and files from one program to the other. The FTP servers are used to move mp4 files around while the HTTP servers are for general information and usually are in the form of json. FTP requires authentication for each client which is the basis of the account system. You can add or remove users and set their password in the server program. This username and password combination is required in the video editor program. Therefore this works perfectly for a large scale operation as multiple people can use the bot at once. 
 
 
 ![](Images/diagram.png)
@@ -49,7 +49,7 @@ Function:
 
 2.	Video Editor Program
 
-This is the actual user interface used to browse the clips in the server clip bin, and also make edits to them in preparation for their compilation. This is a fairly simple process, for any one clip you have the option to keep or remove it; trim the start and end of it; change the volume. You can also upload an intro/outro/interval/general clip. There are also music options for the background music of each video. 
+The user interface used to browse the clips in the server clip bin, and also make edits to them in preparation for their compilation. This is a fairly simple process, for any one clip you have the option to keep or remove it; trim the start and end of it; change the volume. You can also upload an intro/outro/interval/general clip. There are also music options for the background music of each video. 
 
 
 
@@ -57,7 +57,7 @@ This is the actual user interface used to browse the clips in the server clip bi
 
 
 3.	Video Generator Program
-This actually puts together the clips into a compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video.
+This combines the clips into the final compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video for convience when crediting the streamers.
 
 ![](Images/vidgenerator.png)
 
@@ -77,15 +77,15 @@ To find the clips the bot uses the following API call:
 
 We use kraken because it gives access to many more clips then helix - from experience about 4x as much.
 
-Twitch only gives you access to about 1000 clips for each time period entered into the API call, as it limits the amount of pages you can use in the pagination call to about 10 pages, at a max of 100 clips per page. There are four time periods “day”, “week”, “month”, “all”. Therefore at any one time you can only get 4000 clips if every single page is used. This would not be a sufficient amount of clips if the find/download process is only initiated when the bot is used for video editing. Therefore it is recommended to run this process automatically to build up a large clip bin, preferably on a VPS. This is largely down to the usage of the bot - heavy usage will demand a large amount of clips, and therefore turning on the automated find/download process is recommended for this case. 
+Twitch only gives you access to approximately 1000 clips for each time period entered into the API call, as it limits the amount of pages you can use in the pagination call to about 10 pages, at a max of 100 clips per page. There are four time periods “day”, “week”, “month”, “all”. Therefore at any one time you can only get 4000 clips if every single page is used (which the bot does by default). This would not be a sufficient amount of clips if the find/download process is only initiated when the bot is used for video editing. Therefore it is recommended to run this process automatically to build up a large clip bin, preferably on a VPS. This is largely down to the usage of the bot - heavy usage will demand a large amount of clips, and therefore turning on the automated find/download process is recommended for this case. 
 
 ## Assets
 
 **Music**
 
-While most of the assets you'll have to create for yourself, I can provide some copyright free "epic" music to get you started. There's 25 of the best copyright free epic music found regularly in "top clips/plays" videos, with the volumes adjusted to a similar level. Simply drag the "Epic" folder into the video generator Assets/Music/ folder and restart it. This will register the new music category in the server so that the client can now select it when editing a video.
+While you'll have to create most of the assets for yourself, I can provide some copyright free "epic" music to get you started. There's 25 of the best copyright free epic music found regularly in "top clips/plays" videos, with the volumes adjusted to a similar level. Simply drag the "Epic" folder into the video generator Assets/Music/ folder and restart it. This will register the new music category in the server so that the client can now select it when editing a video.
 
-There's also the option of choosing "None" for the music category when editing a video. This will force generate the video without any music.
+There's also the option of choosing "None" for the music category when editing a video. This will generate the video without any music.
 
 [Epic Music (25 copyright free songs)](https://www.mediafire.com/file/x3zszb11lihvbnd/TCCG_Epic_Music_Assets.zip/file)
 
@@ -109,7 +109,7 @@ These files should be placed into the following folders in the video editor clie
 
 These folders will be generated when the video editor client is run.
 
-You can also generate a video without any manually uploaded video files. See below for the client config file options:`enforce_interval`,`enforce_intro`,`enforce_outro`,`enforce_firstclip`
+You can also generate a video without uploading any extra video files. See below for the client config file options:`enforce_interval`,`enforce_intro`,`enforce_outro`,`enforce_firstclip`
 
 
 **Fonts**
@@ -130,7 +130,7 @@ Table clip_bin
 
 `date`: Date when clip recorded
 
-`clipwrapper`: clip’s TwitchClipWrapper() from scriptwrapper.py
+`clipwrapper`: clip's TwitchClipWrapper() from scriptwrapper.py
 
 `status`: The status of the clip
 •	FOUND = information found about clip but not downloaded yet.
@@ -213,7 +213,7 @@ Setup the programs in the following order:
 
 ## Config settings:
 
-Each program has it's own config file that **MUST** be configured appropriately for the system to function properly. **Each bot will generate a config file** (so 3 in total) once it is ran from it's **start point file**. Once the config file is generated, fill in the details where necessary then **restart** the bot and the changes will be taken into account. 
+Each program has it's own config file that **MUST** be configured appropriately for the system to function properly. **Each bot will generate a config file** (3 in total) once it is ran from it's **start point file**. Once the config file is generated, fill in the details where necessary then **restart** the bot and the changes will be taken into account. 
 
 **Server config**
 
