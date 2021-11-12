@@ -39,6 +39,7 @@ Function:
 •	Can manage accounts for the client logins
 
 
+![](Images/server.PNG)
 
 
 
@@ -47,11 +48,14 @@ Function:
 This is the actual user interface used to browse the clips in the server clip bin, and also make edits to them in preparation for their compilation. This is a fairly simple process, for any one clip you have the option to keep or remove it; trim the start and end of it; change the volume. You can also upload an intro/outro/interval/general clip. There are also music options for the background music of each video. 
 
 
+
+![](Images/screenshot1.PNG)
+
+
 3.	Video Generator Program
 This actually puts together the clips into a compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video.
 
 
-![](Images/server.PNG)
 
 ## Automatic Downloader Notes
 
