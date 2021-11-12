@@ -3,7 +3,7 @@
 ## **HA6Bot’s Twitch Clip Compilation Generator**
 
 
-![](Images/server2.PNG)
+![](Images/screenshot2.PNG)
 
 The **TCCG** is a system of bots that **collects clips automatically**, lets you edit videos by **cutting and combining these clips**, and puts them **together into a compilation video** ready to be uploaded straight to any social media platform. **Full VPS support is provided**, along with an accounts system so multiple users can use the bot at once.
 
