@@ -8,6 +8,7 @@
 **TCCG** is a system of bots that **collects Twitch clips automatically**, allows you to easily edit videos by **cutting and combining clips**, and combines them **into a compilation video** ready to be uploaded straight to any social media platform, with optional **background music, animation intervals, outros or intros** . **Full VPS support is provided**, along with a basic authentication system so multiple users can use the bot at once.
 
 [![Video of TCCG in use](http://img.youtube.com/vi/ucUcux0kta8/0.jpg)](http://www.youtube.com/watch?v=ucUcux0kta8 "Video Title")
+
 *Click on image above to see video of TCCG in use.*
 
 
