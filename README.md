@@ -54,7 +54,7 @@ Function:
 
 2.	Video Editor Program
 
-The user interface used to browse the clips in the server clip bin, and also make edits to them in preparation for their compilation. This is a fairly simple process, for any one clip you have the option to keep or remove it; trim the start and end of it; change the volume. You can also upload an intro/outro/interval/general clip. There are also music options for the background music of each video. 
+The user interface that is used to browse and make compilations out of the clips stored in the server clip bin. For every clip you have the option to keep or remove it; trim it's start/end and change it's volume. You can also upload an intro/outro/interval/general clip. There are also optional background music options for each video. 
 
 
 
@@ -62,15 +62,14 @@ The user interface used to browse the clips in the server clip bin, and also mak
 
 
 3.	Video Generator Program
-This combines the clips into the final compilation video. If a interval is specified, it will put a interval between every clip. The same goes for the intro and outro. It also generates a credits text file with links to the streamers channel for the video for convience when crediting the streamers.
+This combines the clips into the final compilation video as specified in video editor. If a interval is specified, one will be put as a transition between every clip. The same goes for the intro and outro which will be put at the start/end of the video respectively. A credits text file is also generated, which contains links to all the livestreamers whos clips were used in the video.
 
 ![](Images/vidgenerator.png)
 
 
 ## Automatic Downloader Notes
 
-The automatic downloader side of the server is designed in a way to get around the Twitch limitations for getting the highlight clips. 
-It is split into two different processes:
+The automatic downloader side of the server is split into two different routines:
 1.	Finding the top highlight clips and obtaining it’s URL
 2.	Downloading the clip via the URL
 
@@ -80,7 +79,7 @@ To find the clips the bot uses the following API call:
 
     https://api.twitch.tv/kraken/clips/top?game={game_name}&period={period}&language=en&limit={100}&cursor={next_page_cursor}
 
-We use kraken because it gives access to many more clips then helix - from experience about 4x as much.
+We use the kraken API because it gives access to many more clips then helix - approximately 4x as much.
 
 Twitch only gives you access to approximately 1000 clips for each time period entered into the API call, as it limits the amount of pages you can use in the pagination call to about 10 pages, at a max of 100 clips per page. There are four time periods “day”, “week”, “month”, “all”. Therefore at any one time you can only get 4000 clips if every single page is used (which the bot does by default). This would not be a sufficient amount of clips if the find/download process is only initiated when the bot is used for video editing. Therefore it is recommended to run this process automatically to build up a large clip bin, preferably on a VPS. This is largely down to the usage of the bot - heavy usage will demand a large amount of clips, and therefore turning on the automated find/download process is recommended for this case. 
 
